@@ -1,5 +1,7 @@
+using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -13,6 +15,8 @@ public class PlayerController : MonoBehaviour
     public float groundRadius = 0.1f;
     public LayerMask groundLayer;
     private Animator animator;
+    private int coins;
+    public TMP_Text textCoins;
     
     void Start()
     {
@@ -42,5 +46,20 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         isGrounded= Physics2D.OverlapCircle(groundCheck.position, groundRadius, groundLayer);
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.transform.CompareTag("Coin"))
+        {
+            Destroy(collision.gameObject);
+            coins++;
+            textCoins.text = coins.ToString();
+        }
+
+        if (collision.transform.CompareTag("Spikes"))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
     }
 }
