@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     [Header("Interfaz")]
     [SerializeField] private TMP_Text textCoins;
     [SerializeField] private TMP_Text textRaspberries;
+    public AudioSource audioSource;
 
     private Rigidbody2D rb2D;
     private float move;
@@ -23,6 +24,10 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
     private int coins;
     private int raspberries;
+    public AudioClip coinClip;
+    public AudioClip raspberryClip;
+    public AudioClip barrelClip;
+    public AudioClip spikeClip;
 
     void Start()
     {
@@ -67,6 +72,7 @@ public class PlayerController : MonoBehaviour
         // Recoge la moneda y actualiza el contador.
         if (collision.transform.CompareTag("Coin"))
         {
+            audioSource.PlayOneShot(coinClip);
             Destroy(collision.gameObject);
             coins++;
             textCoins.text = coins.ToString();
@@ -75,6 +81,7 @@ public class PlayerController : MonoBehaviour
         // Recoge la frambuesa y actualiza el contador.
         if (collision.transform.CompareTag("Raspberry"))
         {
+            audioSource.PlayOneShot(raspberryClip);
             Destroy(collision.gameObject);
             raspberries++;
             textRaspberries.text = raspberries.ToString();
@@ -83,12 +90,14 @@ public class PlayerController : MonoBehaviour
         // Al tocar los pinchos, reinicia la escena.
         if (collision.transform.CompareTag("Spikes"))
         {
+            audioSource.PlayOneShot(spikeClip);
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
         // Al tocar un barril, el jugador recibe un impulso hacia atrás.
         if (collision.transform.CompareTag("Barrel"))
         {
+            audioSource.PlayOneShot(barrelClip);
             Vector2 knockbackDir =
                 (rb2D.position - (Vector2)collision.transform.position).normalized;
 
