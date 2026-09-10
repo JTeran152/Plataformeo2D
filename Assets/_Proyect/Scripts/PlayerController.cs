@@ -15,12 +15,14 @@ public class PlayerController : MonoBehaviour
 
     [Header("Interfaz")]
     [SerializeField] private TMP_Text textCoins;
+    [SerializeField] private TMP_Text textRaspberries;
 
     private Rigidbody2D rb2D;
     private float move;
     private bool isGrounded;
     private Animator animator;
     private int coins;
+    private int raspberries;
 
     void Start()
     {
@@ -68,6 +70,14 @@ public class PlayerController : MonoBehaviour
             Destroy(collision.gameObject);
             coins++;
             textCoins.text = coins.ToString();
+        }
+
+        // Recoge la frambuesa y actualiza el contador.
+        if (collision.transform.CompareTag("Raspberry"))
+        {
+            Destroy(collision.gameObject);
+            raspberries++;
+            textRaspberries.text = raspberries.ToString();
         }
 
         // Al tocar los pinchos, reinicia la escena.
