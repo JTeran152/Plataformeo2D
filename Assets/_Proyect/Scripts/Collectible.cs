@@ -20,25 +20,26 @@ public class Collectible : MonoBehaviour
         if (!collision.transform.root.CompareTag("Player"))
             return;
 
-        // Buscar el AudioSource del Player.
-        AudioSource audioSource = collision.GetComponentInParent<AudioSource>();
+        // Busca el AudioSource del jugador.
+        AudioSource audioSource =
+            collision.GetComponentInParent<AudioSource>();
 
         if (audioSource != null && collectClip != null)
         {
             audioSource.PlayOneShot(collectClip);
         }
 
-        // Actualizar el contador correspondiente.
+        // El GameManager se encarga de actualizar el contador.
         if (type == CollectibleType.Coin)
         {
-            UIManager.Instance.AddCoin();
+            GameManager.Instance.AddCoin();
         }
         else if (type == CollectibleType.Raspberry)
         {
-            UIManager.Instance.AddRaspberry();
+            GameManager.Instance.AddRaspberry();
         }
 
-        // Eliminar el objeto recogido.
+        // Elimina el coleccionable.
         Destroy(gameObject);
     }
-}   
+}

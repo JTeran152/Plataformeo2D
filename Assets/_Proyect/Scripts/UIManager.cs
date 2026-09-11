@@ -3,36 +3,17 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
-    public static UIManager Instance { get; private set; }
-
     [Header("Contadores")]
     [SerializeField] private TMP_Text textCoins;
     [SerializeField] private TMP_Text textRaspberries;
 
-    private int coins;
-    private int raspberries;
-
-    private void Awake()
+    public void UpdateCoins(int amount)
     {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        textCoins.text = amount.ToString();
     }
 
-    public void AddCoin()
+    public void UpdateRaspberries(int amount)
     {
-        coins++;
-        textCoins.text = coins.ToString();
-    }
-
-    public void AddRaspberry()
-    {
-        raspberries++;
-        textRaspberries.text = raspberries.ToString();
+        textRaspberries.text = amount.ToString();
     }
 }

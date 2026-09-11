@@ -4825,6 +4825,51 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6165882466096954697, guid: 37d97eb06cebc0c499debac83c09fdb8, type: 3}
   m_PrefabInstance: {fileID: 489227611}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &490448173
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 490448175}
+  - component: {fileID: 490448174}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &490448174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 490448173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b965b466675c33447b0659d7d4112be6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  uiManager: {fileID: 1212857994}
+--- !u!4 &490448175
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 490448173}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.637, y: -0.61047, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &493583965
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30646,6 +30691,8 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 519420032}
+  - {fileID: 1750023072}
+  - {fileID: 490448175}
   - {fileID: 619394802}
   - {fileID: 3054779101597224831}
   - {fileID: 1552753069}
@@ -30655,7 +30702,6 @@ SceneRoots:
   - {fileID: 430464889}
   - {fileID: 1058535562}
   - {fileID: 458317418}
-  - {fileID: 1750023072}
   - {fileID: 1212857993}
   - {fileID: 221172706}
   - {fileID: 1808192529}
