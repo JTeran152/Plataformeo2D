@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3885236172717084485}
   - component: {fileID: 1076160364877631559}
   - component: {fileID: 137547651316935491}
+  - component: {fileID: -3440972472010530576}
   m_Layer: 0
   m_Name: Raspberry
   m_TagString: Raspberry
@@ -153,3 +154,17 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.14, y: 0.14}
   m_Direction: 0
+--- !u!114 &-3440972472010530576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1881713163774109043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50c30d55b124fa440bc1724a27a53b59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Collectible
+  type: 1
+  collectClip: {fileID: 8300000, guid: 89a9c226cecca104dbc3c8482ca13261, type: 3}

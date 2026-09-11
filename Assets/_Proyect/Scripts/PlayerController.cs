@@ -1,6 +1,4 @@
-using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -13,21 +11,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float groundRadius = 0.1f;
     [SerializeField] private LayerMask groundLayer;
 
-    [Header("Interfaz")]
-    [SerializeField] private TMP_Text textCoins;
-    [SerializeField] private TMP_Text textRaspberries;
-    public AudioSource audioSource;
-
     private Rigidbody2D rb2D;
     private float move;
     private bool isGrounded;
     private Animator animator;
-    private int coins;
-    private int raspberries;
-    public AudioClip coinClip;
-    public AudioClip raspberryClip;
-    public AudioClip barrelClip;
-    public AudioClip spikeClip;
 
     void Start()
     {
@@ -37,21 +24,33 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        // Obtiene el movimiento horizontal y aplica una respuesta inmediata.
+        // Obtiene el movimiento horizontal.
         move = Input.GetAxisRaw("Horizontal");
-        rb2D.linearVelocity = new Vector2(move * speed, rb2D.linearVelocity.y);
+        rb2D.linearVelocity = new Vector2(
+            move * speed,
+            rb2D.linearVelocity.y
+        );
 
         // Orienta al personaje según la dirección del movimiento.
         if (move != 0)
-            transform.localScale = new Vector3(Mathf.Sign(move), 1, 1);
-
-        // Solo permite saltar cuando el personaje está sobre el suelo.
-        if (Input.GetButtonDown("Jump") && isGrounded)
         {
-            rb2D.linearVelocity = new Vector2(rb2D.linearVelocity.x, jumpForce);
+            transform.localScale = new Vector3(
+                Mathf.Sign(move),
+                1,
+                1
+            );
         }
 
-        // Actualiza los parámetros utilizados por las animaciones.
+        // Permite saltar únicamente cuando está sobre el suelo.
+        if (Input.GetButtonDown("Jump") && isGrounded)
+        {
+            rb2D.linearVelocity = new Vector2(
+                rb2D.linearVelocity.x,
+                jumpForce
+            );
+        }
+
+        // Actualiza las animaciones.
         animator.SetFloat("Speed", Mathf.Abs(move));
         animator.SetFloat("VerticalVelocity", rb2D.linearVelocity.y);
         animator.SetBool("IsGrounded", isGrounded);
@@ -65,55 +64,5 @@ public class PlayerController : MonoBehaviour
             groundRadius,
             groundLayer
         );
-    }
-
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        // Recoge la moneda y actualiza el contador.
-        if (collision.transform.CompareTag("Coin"))
-        {
-            audioSource.PlayOneShot(coinClip);
-            Destroy(collision.gameObject);
-            coins++;
-            textCoins.text = coins.ToString();
-        }
-
-        // Recoge la frambuesa y actualiza el contador.
-        if (collision.transform.CompareTag("Raspberry"))
-        {
-            audioSource.PlayOneShot(raspberryClip);
-            Destroy(collision.gameObject);
-            raspberries++;
-            textRaspberries.text = raspberries.ToString();
-        }
-
-        // Al tocar los pinchos, reinicia la escena.
-        if (collision.transform.CompareTag("Spikes"))
-        {
-            audioSource.PlayOneShot(spikeClip);
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }
-
-        // Al tocar un barril, el jugador recibe un impulso hacia atrás.
-        if (collision.transform.CompareTag("Barrel"))
-        {
-            audioSource.PlayOneShot(barrelClip);
-            Vector2 knockbackDir =
-                (rb2D.position - (Vector2)collision.transform.position).normalized;
-
-            rb2D.linearVelocity = Vector2.zero;
-            rb2D.AddForce(knockbackDir * 3, ForceMode2D.Impulse);
-
-            BoxCollider2D[] colliders =
-                collision.gameObject.GetComponents<BoxCollider2D>();
-
-            foreach (BoxCollider2D col in colliders)
-            {
-                col.enabled = false;
-            }
-
-            collision.GetComponent<Animator>().enabled = true;
-            Destroy(collision.gameObject, 0.5f);
-        }
     }
 }

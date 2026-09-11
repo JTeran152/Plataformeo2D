@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7368775438763159506}
   - component: {fileID: 7331263186859358578}
   - component: {fileID: 7506373961641028336}
+  - component: {fileID: 5328291454070378043}
   m_Layer: 0
   m_Name: Barrel
   m_TagString: Barrel
@@ -209,3 +210,17 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.1488707, y: 0.025480598}
   m_EdgeRadius: 0
+--- !u!114 &5328291454070378043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8398106498911027037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97dfc98e8d3a91944bb7b2ce7fa83c3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Barrel
+  knockbackForce: 3
+  barrelClip: {fileID: 8300000, guid: ec3e28a9542a7324b9b725d079320e1d, type: 3}
